@@ -58,7 +58,7 @@ export default class Home extends Component {
           />
         )}
         {auth.isLoggedIn() ? <AddButton addButtonClick={this._createBoardForm}  /> : null}
-        {this.state.createBoard ? <CreateBoard id={boards[0].ownerId}/> : null}
+        {this.state.createBoard ? <CreateBoard id={boards}/> : null}
       </div>
     );
   }

@@ -20,39 +20,19 @@ export default class CreateBoard extends Component {
       })
     }
   }
-  
+
   _handleClick = (e) => {
     e.preventDefault()
-      var fetchObj = {
-        method:'POST',
-        body: JSON.stringify({
-          title:this.refs.title.value,
-          description:this.refs.description.value
-        })
-      }
-
-      fetch(`${API_HOST}/boards`, fetchObj)
-        .then(data => data.json())
-        .then(res => {
-            history.push(`/boards/${res.id}`)
-        })
-        .catch(
-          this.setState({error:"error"})
-        )
+    this._fetchData()
     }
-  // _handleClick = (e) => {
-  //   e.preventDefault()
-  //   this._fetchData()
-  //   }
-  //
-  // _fetchData = () =>{
-  //   console.log(this.props.id, "uuua")
-  //   api.createBoards(this.props.id)
-  //   .then(res => {
-  //     console.log(res)
-  //   })
-  //
-  // }
+
+  _fetchData = () =>{
+    api.createBoards(this.refs.title.value,this.refs.description.value, localStorage.token)
+    .then(res => {
+      history.push(`/boards/${res.body[0].id}`)
+    })
+
+  }
 
   render(){
     return (

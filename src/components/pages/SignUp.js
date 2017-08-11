@@ -25,7 +25,7 @@ export default class SignUp extends Component {
     .catch(
       this.setState({error:"Please put in a username or password"})
     )
-    // *
+    //
   }
 
   render() {

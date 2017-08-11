@@ -12,12 +12,12 @@ export default class CreateBookmark extends Component {
   }
 
   _handleClick = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     this._fetchData()
   }
 
   _handleInput = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     if (e.target.value.length <= 80){
       this.setState({
         inputValue:e.target.value
@@ -26,14 +26,14 @@ export default class CreateBookmark extends Component {
   }
 
   _fetchData = () => {
-    api.createBookmarks(this.props.boardId)
+    api.createBookmarks(this.props.boardId, this.refs.title.value, this.refs.url.value, this.refs.description.value, localStorage.token)
     .then(res => {
-      console.log(res)
-      history.push(`/boards/${res.body.boardId}`)
+      console.log('CBM 34', this.props.boardId, " fsadfsf ", res);
+      history.push(`/boards/${this.props.boardId}`) // ******* REDIRECT BETTER
     })
 
   }
-  
+
   render() {
     return (
       <div>

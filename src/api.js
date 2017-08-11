@@ -33,9 +33,11 @@ class Api {
     .get(`${API_HOST}/boards/${id}`)
   )
 
-  createBoards = (id) => (
+  createBoards = (title, description, token) => (
     superagent
-    .post(`${API_HOST}/boards/${id}`)
+    .post(`${API_HOST}/boards`)
+    .set('Authorization', `token ${token}`)
+    .send({title,description})
   )
 
   getBookmarks = (boardId) => (
@@ -43,9 +45,11 @@ class Api {
     .get(`${API_HOST}/boards/${boardId}/bookmarks`)
   )
 
-  createBookmarks = (boardId) => (
+  createBookmarks = (boardId, title, url , description , token) => (
     superagent
     .post(`${API_HOST}/boards/${boardId}/bookmarks`)
+    .set('Authorization', `token ${token}`)
+    .send({title,description,url})
   )
 
   getMe = (token) => (
